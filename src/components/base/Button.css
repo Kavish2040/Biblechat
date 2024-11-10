@@ -1,0 +1,100 @@
+/* src/components/base/Button.css */
+
+/* Button Container */
+.button {
+    position: relative; /* To position the waveform absolutely */
+    background-color: #2e8b57; /* Sea Green */
+    color: #e0e0e0; /* Light Gray */
+    border: none;
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin: 10px 0;
+    overflow: hidden; /* Hide overflow for waveform */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    z-index: 1; /* Ensure button content is above waveform */
+  }
+  
+  /* Disabled State */
+  .button.disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+  }
+  
+  /* Hover Effect */
+  .button:hover:not(.disabled) {
+    background-color: #276749; /* Darker Green */
+    transform: translateY(-2px);
+  }
+  
+  /* Active Effect */
+  .button:active:not(.disabled) {
+    background-color: #22543d; /* Even Darker Green */
+    transform: translateY(0);
+  }
+  
+  /* Spinner Styling */
+  .spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Button Label */
+  .button-label {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Waveform Effect */
+  .waveform {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(224, 224, 224, 0.2),
+      rgba(224, 224, 224, 0.2) 2px,
+      transparent 2px,
+      transparent 4px
+    );
+    opacity: 0.3;
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: rotateWaveform 6s linear infinite;
+    border-radius: 50%;
+    z-index: -1; /* Place behind the button */
+  }
+  
+  /* Waveform Animation */
+  @keyframes rotateWaveform {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .button {
+      padding: 10px 25px;
+      font-size: 14px;
+    }
+  
+    .waveform {
+      width: 250%;
+      height: 250%;
+    }
+  }
+  

@@ -1,0 +1,29 @@
+/* src/components/Captions.css */
+
+.captions-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    padding: 10px 20px;
+    border-radius: 20px;
+    max-width: 80%;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .captions-container.show {
+    opacity: 1;
+  }
+  
+  .caption-text {
+    color: #ffffff; /* White text */
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+
+  

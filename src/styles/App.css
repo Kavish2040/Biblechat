@@ -1,0 +1,333 @@
+/* src/styles/App.css */
+
+/* Importing modern and techy fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Color Palette - Dark Theme with Neon Accents */
+  --primary-color: #0a0a0a; /* Very Dark Gray / Near Black */
+  --secondary-color: #1a1a1a; /* Dark Gray */
+  --accent-color: #00FFFF; /* Neon Cyan */
+  --text-color: #e0e0e0; /* Light Gray */
+  --error-color: #ff4c4c; /* Bright Red */
+  --button-hover: #00e5e5; /* Slightly Darker Neon Cyan */
+  --button-active: #00b3b3; /* Even Darker Neon Cyan */
+  --header-text-color: #ffffff; /* White */
+  --wave-color: rgba(0, 255, 255, 0.2); /* Neon Cyan for Waveform */
+  --solid-background-color: #1a1a1a; /* Solid Dark Gray Background */
+  --grid-line-color: #fcfcfc0d; /* Very Light White for Subtle Grid Lines */
+
+  /* Darker Green Gradient Colors */
+  --gradient-start: #090d0c; /* Extremely Dark Green */
+  --gradient-mid: #030303;   /* Very Dark Green */
+  --gradient-end: #000000;   /* Dark Green */
+
+  /* Enhanced Golden Radial Design Colors */
+  --radial-start: rgba(255, 215, 0, 0.8); /* Brighter Gold with higher opacity */
+  --radial-end: rgba(255, 215, 0, 0);   /* Transparent for fade effect */
+
+  /* Additional Typography Variables */
+  --guide-text-color: #ffd700; /* Gold for Guides */
+  --guide-text-shadow: 0 0 5px rgba(255, 215, 0, 0.7); /* Subtle Gold Shadow */
+  --body-font-size: 1rem;
+  --header-font-size: 3rem;
+  --guide-font-size: 1.2rem;
+}
+
+/* Reset and global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html, #root {
+  height: 100%;
+  font-family: 'Montserrat', sans-serif; /* Updated font */
+  background-color: var(--primary-color); /* Fallback background color */
+}
+
+/* Container Styles */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+
+  /* Multiple backgrounds: Grid Lines + Static Dark Green Gradient */
+  background: 
+    /* Grid Lines */
+    linear-gradient(var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-color) 1px, transparent 1px),
+    /* Static Dark Green Gradient Background */
+    linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
+  
+  background-size: 50px 50px, 50px 50px, cover; /* Grid spacing and gradient size */
+  background-repeat: repeat, repeat, no-repeat; /* Repeat grid lines, no-repeat gradient */
+  background-position: 0 0, 0 0, center; /* Initial positions */
+
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: var(--text-color);
+  overflow: hidden; /* Ensure no overflow from decorative elements */
+}
+
+/* Overlay for better readability */
+.app-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.05); /* Light overlay for texture */
+  z-index: 0;
+}
+
+/* Golden Radial Design Effect */
+.button-container::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 350px; /* Increased size for a more prominent glow */
+  height: 350px;
+  background: radial-gradient(circle, var(--radial-start), var(--radial-end));
+  filter: blur(130px); /* Increased blur for a softer glow */
+  transform: translate(-50%, -50%);
+  z-index: 0; /* Places it behind the button */
+}
+
+/* Header Styling */
+.app-header {
+  position: absolute;
+  top: 20px;
+  text-align: center;
+  z-index: 1; /* Ensure it stays above overlays */
+}
+
+.app-header h1 {
+  font-size: var(--header-font-size); /* Increased size for better visibility */
+  font-weight: 700; /* Bold weight for emphasis */
+  font-family: 'Roboto Mono', monospace; /* Techy font for header */
+  position: relative;
+  z-index: 2; /* Ensure it stays above decorative elements */
+
+  /* Gradient Effect */
+  background: linear-gradient(to bottom, #343333 20%, #f1f2b0 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Subtle Text Shadow for Depth */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Main Content Styling */
+.app-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1; /* Ensure it stays above overlays */
+}
+
+/* Public Key Message Styling */
+.public-key-message {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  padding: 15px 20px;
+  color: #fff;
+  background-color: var(--error-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(255, 76, 76, 0.3);
+  animation: fadeInOut 3s forwards;
+  z-index: 2; /* Ensure it stays above other elements */
+}
+
+.public-key-message p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Keyframes for Fade In and Out Animation */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* Button Styles */
+button {
+  font-family: 'Montserrat', sans-serif; /* Updated font */
+}
+
+button:focus {
+  outline: 2px solid var(--accent-color); /* Custom focus outline for accessibility */
+  outline-offset: 2px;
+}
+
+.button {
+  position: relative; /* To position the waveform */
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  border: none;
+  border-radius: 50px;
+  padding: 15px 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 255, 255, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin: 10px 0;
+  font-weight: 600; /* Semi-bold for better readability */
+  overflow: hidden; /* Hide overflow for waveform */
+  z-index: 1; /* Ensure button content is above waveform */
+}
+
+.button:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+}
+
+.button:active {
+  background-color: var(--button-active);
+  transform: translateY(0);
+}
+
+/* Waveform Effect */
+.button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--wave-color),
+    var(--wave-color) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  opacity: 0.3;
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: rotateWaveform 4s linear infinite;
+  border-radius: 50%;
+  z-index: -1; /* Place behind the button */
+}
+
+@keyframes rotateWaveform {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Loading Spinner */
+.button .spinner {
+  border: 4px solid var(--secondary-color);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .app-header h1 {
+    font-size: 2rem; /* Adjusted for smaller screens */
+  }
+
+  .button {
+    padding: 12px 25px;
+    font-size: 0.9rem;
+  }
+
+  .public-key-message {
+    bottom: 15px;
+    left: 15px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+
+  /* Adjust waveform size on smaller screens */
+  .button::before {
+    width: 300%;
+    height: 300%;
+  }
+
+  /* Adjust golden radial design size on smaller screens */
+  .button-container::after {
+    width: 200px;
+    height: 200px;
+    filter: blur(80px);
+  }
+}
+
+/* Emotion Score Display Styling */
+.emotion-score {
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  background-color: rgba(255, 215, 0, 0.2); /* Semi-transparent gold background */
+  padding: 10px 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  color: var(--guide-text-color); /* Gold color */
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+  z-index: 2; /* Ensure it stays above other elements */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Guide Styling */
+.guide {
+  font-size: var(--guide-font-size);
+  color: var(--guide-text-color);
+  text-shadow: var(--guide-text-shadow);
+  font-family: 'Roboto Mono', monospace;
+  margin: 10px 0;
+  text-align: center;
+  max-width: 80%;
+}
+
+/* Inspiring Quote Styling (Optional) */
+.quote {
+  font-size: 1.5rem;
+  color: var(--guide-text-color);
+  text-shadow: var(--guide-text-shadow);
+  font-family: 'Roboto Mono', monospace;
+  margin: 20px 0;
+  font-style: italic;
+  text-align: center;
+  max-width: 80%;
+  line-height: 1.5;
+}
